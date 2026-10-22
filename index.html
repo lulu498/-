@@ -2710,7 +2710,7 @@ window.JMMPacingR5616={version:VERSION,policy,estimate,transition,dependencies,s
 })();
 
 </script>
-<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <style id="jmmOriginalFontsOfflineR562423">
 /* Original fonts embedded locally; no network dependency at startup. */
 @font-face {
@@ -22720,10 +22720,9 @@ let generationHeaderV170=(...a)=>__jmmOriginalHelpersV170R2704.generation(...a),
   // Mobile workspace: one task at a time instead of unusable three-column squeeze.
   function classifyMobileModules182(){document.querySelectorAll('.rail.left > .mod').forEach(m=>{const id=m.id||'';const flow=String(m.dataset.jmmFlowStage||'').trim().toUpperCase();const raw=flow||String(m.querySelector('h3 .n')?.textContent||'').trim().toUpperCase();const stage=parseInt((raw.match(/\d+/)||['0'])[0],10)||0;const title=String(m.querySelector('h3')?.textContent||'').toLowerCase();let g='blocking';if(id==='contentInputModuleV261'||/内容输入|分镜执行输入|auto input/.test(title)||(flow&&stage>=1&&stage<=7))g='story';else if((flow&&stage>=13&&stage<=18)||(!flow&&stage>=12))g='output';else if(!flow&&stage>=3&&stage<=5)g='story';m.dataset.mobileGroup182=g;});}
   function setMobileTab182(tab='preview'){
-    if(document.getElementById('jmmPromptOnlyV2749'))return;
     document.body.dataset.mobileTab182=tab;document.querySelectorAll('[data-mobile-tab182]').forEach(b=>b.classList.toggle('on',b.dataset.mobileTab182===tab));document.querySelectorAll('.rail.left > .mod').forEach(m=>{if(window.innerWidth<=760)m.style.display=(tab==='story'&&m.dataset.mobileGroup182==='story')||(tab==='blocking'&&m.dataset.mobileGroup182==='blocking')||(tab==='output'&&m.dataset.mobileGroup182==='output')?'':'none';else m.style.display='';});
   }
-  function ensureMobileNav182(){if(document.getElementById('jmmPromptOnlyV2749'))return;if(document.getElementById('mobileWorkspaceV182'))return;classifyMobileModules182();const nav=document.createElement('div');nav.id='mobileWorkspaceV182';nav.innerHTML=`<button data-mobile-tab182="story">剧情</button><button data-mobile-tab182="blocking">调度</button><button data-mobile-tab182="preview" class="on">预演</button><button data-mobile-tab182="output">输出</button>`;document.body.appendChild(nav);nav.querySelectorAll('button').forEach(b=>b.onclick=()=>setMobileTab182(b.dataset.mobileTab182));window.addEventListener('resize',()=>setMobileTab182(document.body.dataset.mobileTab182||'preview'));setMobileTab182('preview');}
+  function ensureMobileNav182(){if(document.getElementById('mobileWorkspaceV182'))return;classifyMobileModules182();const nav=document.createElement('div');nav.id='mobileWorkspaceV182';nav.innerHTML=`<button data-mobile-tab182="story">剧情</button><button data-mobile-tab182="blocking">调度</button><button data-mobile-tab182="preview" class="on">预演</button><button data-mobile-tab182="output">输出</button>`;document.body.appendChild(nav);nav.querySelectorAll('button').forEach(b=>b.onclick=()=>setMobileTab182(b.dataset.mobileTab182));window.addEventListener('resize',()=>setMobileTab182(document.body.dataset.mobileTab182||'preview'));setMobileTab182('preview');}
 
   // Save/restore unified graph and V18.1 imported images.
   const __project182=projectData;
@@ -26819,7 +26818,6 @@ try {
     return nav;
   }
   function setTab(tab){
-    if(document.getElementById('jmmPromptOnlyV2749'))return;
     const allowed=['story','blocking','preview','output'];
     const next=allowed.includes(tab)?tab:'story';
     document.body.dataset.mobileTab182=next;
@@ -26833,7 +26831,6 @@ try {
     const rail=document.querySelector('.rail.left');if(rail&&next!=='preview')rail.scrollTop=0;
   }
   function boot(){
-    if(document.getElementById('jmmPromptOnlyV2749'))return;
     classify();ensureNotice();ensureNav();
     const initial=document.body.dataset.mobileTab182||'story';
     setTab(initial==='preview'?'story':initial);
@@ -75518,145 +75515,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   window.addEventListener('unhandledrejection',e=>{if(active)show('操作未完成：'+String(e.reason?.message||e.reason||'异步操作失败'),true)});
 })();
 
-</script>
-
-<style id="jmmDualDeviceMobileStyleR562449">
-/* R56.24.49 Dual device / Pure Prompt edition.  Desktop CSS is intentionally untouched. */
-@media screen and (max-width: 760px) {
-  :root{--jmm-mobile-nav-height:calc(58px + env(safe-area-inset-bottom, 0px));}
-  /* Legacy v18 mobile JS writes inline display:none for all non-story modules.
-     Restore the pure-Prompt desktop modules, respecting the intentional analysis toggle. */
-  body.jmm-analysis-hidden .app > .rail.left > .mod[data-mobile-group182]:not(.jmm-analysis-module):not(.jmm-prompt-only-hidden):not([hidden]),
-  body:not(.jmm-analysis-hidden) .app > .rail.left > .mod[data-mobile-group182]:not(.jmm-prompt-only-hidden):not([hidden]){
-    display:block!important;
-  }
-  #manualPoseModuleV261,#manualActorModuleV261,#dccBridgePrepModuleV262{display:none!important;}
-  body[data-jmm-mobile-view="story"] .app > .rail.left > .mod[data-mobile-group182]:not([data-mobile-group182="story"]):not(.jmm-prompt-only-hidden):not([hidden]),
-  body[data-jmm-mobile-view="blocking"] .app > .rail.left > .mod[data-mobile-group182]:not([data-mobile-group182="blocking"]):not(.jmm-prompt-only-hidden):not([hidden]),
-  body[data-jmm-mobile-view="output"] .app > .rail.left > .mod[data-mobile-group182]:not([data-mobile-group182="output"]):not(.jmm-prompt-only-hidden):not([hidden]){display:none!important;}
-
-  html,body{width:100%!important;max-width:100%!important;height:100%!important;overflow:hidden!important;-webkit-text-size-adjust:100%;}
-  body{overscroll-behavior:none;}
-  body > .app{
-    width:100%!important;min-width:0!important;max-width:100%!important;
-    height:100vh!important;height:100dvh!important;min-height:0!important;
-    display:grid!important;grid-template-columns:minmax(0,1fr)!important;
-    grid-template-rows:calc(52px + env(safe-area-inset-top,0px)) minmax(0,1fr)!important;
-    grid-template-areas:"top" "left"!important;
-    overflow:hidden!important;
-  }
-  .app > .top{
-    grid-area:top!important;min-width:0!important;min-height:0!important;
-    width:100%!important;padding:env(safe-area-inset-top,0px) 12px 0!important;
-    gap:10px!important;align-items:center!important;overflow:hidden!important;
-  }
-  .top .brand{flex:none!important;gap:7px!important;white-space:nowrap!important;}
-  .top .brand b{font-size:12px!important;letter-spacing:.08em!important;}
-  .top .brand .yr,.top .tags{display:none!important;}
-  .top .ttl{display:block!important;flex:1!important;min-width:0!important;width:auto!important;
-    padding-left:9px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
-    font-size:11px!important;line-height:1.4!important;}
-  .top .spacer{display:none!important;}
-  .app > .rail.left{
-    grid-area:left!important;position:relative!important;display:block!important;
-    inset:auto!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;
-    width:100%!important;max-width:100%!important;height:100%!important;max-height:none!important;
-    min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;
-    -webkit-overflow-scrolling:touch!important;touch-action:pan-y!important;
-    padding:6px 8px calc(var(--jmm-mobile-nav-height) + 16px)!important;
-    scroll-padding-top:12px!important;overscroll-behavior-y:contain!important;
-    scrollbar-gutter:auto!important;
-  }
-  .rail.left > .mod{box-sizing:border-box!important;min-width:0!important;max-width:100%!important;
-    width:100%!important;margin-left:0!important;margin-right:0!important;
-    padding:12px 10px 14px!important;border-left:0!important;border-right:0!important;}
-  .rail.left > details{max-width:100%!important;overflow-wrap:anywhere;}
-  .rail.left .mod h3{font-size:12px!important;letter-spacing:.05em!important;line-height:1.5!important;flex-wrap:wrap!important;}
-  .rail.left .mod .row{min-width:0!important;flex-wrap:wrap;}
-  .rail.left .mod .grid2,.rail.left .storyActions,.rail.left .miniBtns{min-width:0!important;}
-  .rail.left .mod :is(.aiInput,.storyInput,textarea,select,input:not([type="checkbox"]):not([type="radio"])){
-    max-width:100%;font-size:16px!important;line-height:1.5!important;
-  }
-  .rail.left :is(button,.btn,.chip,.pc,.cambtn,summary,[role="button"]){
-    -webkit-tap-highlight-color:rgba(240,168,48,.12);touch-action:manipulation;
-  }
-  .rail.left :is(button,.btn){min-height:38px;white-space:normal!important;line-height:1.3!important;}
-  .rail.left :is(.btn,.chip,.pc,.cambtn){font-size:12px!important;}
-  .rail.left :is(.aiTiny,.storyEmpty,.sd182Hint){font-size:11px!important;line-height:1.55!important;}
-  .rail.left :is(pre,code,p,small,td,th,label,summary){overflow-wrap:anywhere;}
-  .rail.left :is(table){display:block;max-width:100%!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch;}
-  .rail.left :is(.blockingV172Grid,.sd182Graph){grid-template-columns:minmax(0,1fr)!important;}
-  .rail.left :is(.sd182Wp,.sd182CamWp){grid-template-columns:repeat(2,minmax(0,1fr))!important;}
-  .rail.left :is(.sd182CamWp>span){grid-column:1/-1;}
-  .rail.left img,.rail.left svg,.rail.left canvas{max-width:100%!important;height:auto;}
-  .rail.left .mod details > summary{min-height:38px;padding-top:8px;padding-bottom:8px;}
-  #mobileWorkspaceV182,.center,.bottom,#poseRail{display:none!important;}
-  #jmmMobileQuickNavR562449{
-    position:fixed;left:0;right:0;bottom:0;z-index:2147483000;
-    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;
-    gap:5px;height:var(--jmm-mobile-nav-height);
-    padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));
-    background:rgba(13,16,21,.97);border-top:1px solid #343b47;
-    box-shadow:0 -4px 18px rgba(0,0,0,.34);
-  }
-  #jmmMobileQuickNavR562449 button{
-    min-width:0;min-height:39px;padding:4px 2px;
-    font:12px/1.25 var(--mono);color:#d0d9e5;
-    background:#1c222b;border:1px solid #404958;border-radius:8px;
-    touch-action:manipulation;cursor:pointer;
-  }
-  #jmmMobileQuickNavR562449 button.on,
-  #jmmMobileQuickNavR562449 button:active,#jmmMobileQuickNavR562449 button:focus-visible{
-    border-color:#f0a830;color:#f0a830;background:#2b2317;outline:none;
-  }
-  body.jmm-mobile-keyboard #jmmMobileQuickNavR562449{display:none!important;}
-  .promptModal{padding:calc(10px + env(safe-area-inset-top,0px)) 10px calc(10px + env(safe-area-inset-bottom,0px))!important;}
-  .promptBox{width:100%!important;max-width:100%!important;max-height:calc(100dvh - 22px)!important;
-    padding:12px!important;display:flex;flex-direction:column;overflow:hidden!important;}
-  .promptBox textarea{flex:1;min-height:120px;max-height:55dvh;height:45dvh!important;font-size:16px!important;}
-  .promptActions{flex-wrap:wrap!important;justify-content:stretch!important;}
-  .promptActions .btn{flex:1;min-height:44px;justify-content:center;}
-  #jmmActionFeedbackR562425{bottom:calc(var(--jmm-mobile-nav-height) + 8px)!important;max-height:45dvh!important;}
-}
-@media screen and (max-width: 360px){
-  .top .ttl{font-size:10px!important;}
-  .rail.left .mod{padding-left:7px!important;padding-right:7px!important;}
-  #jmmMobileQuickNavR562449 button{font-size:11px;}
-}
-@media screen and (min-width: 761px){#jmmMobileQuickNavR562449{display:none!important;}}
-</style>
-<script id="jmmDualDeviceMobileScriptR562449">
-/* R56.24.49: compact mobile view switcher. Filter by existing module groups only. */
-(function(){'use strict';
-  const id='jmmMobileQuickNavR562449';
-  const choices=[['all','全部'],['story','剧情'],['blocking','导演'],['output','输出']];
-  function selectView(mode){
-    if(!choices.some(item=>item[0]===mode))mode='all';
-    document.body.dataset.jmmMobileView=mode;
-    const nav=document.getElementById(id);
-    nav?.querySelectorAll('button').forEach(b=>{
-      const on=b.dataset.view===mode;
-      b.setAttribute('aria-pressed',String(on));b.classList.toggle('on',on);
-    });
-    const r=document.querySelector('.app>.rail.left');if(r&&window.innerWidth<=760)r.scrollTop=0;
-  }
-  function install(){
-    if(document.getElementById(id)||!document.body)return;
-    const nav=document.createElement('nav');nav.id=id;nav.setAttribute('aria-label','手机工作台功能分区');
-    choices.forEach(([key,txt])=>{
-      const b=document.createElement('button');b.type='button';b.textContent=txt;b.dataset.view=key;
-      b.addEventListener('click',()=>selectView(key));nav.appendChild(b);
-    });
-    document.body.appendChild(nav);selectView('all');
-    if(window.visualViewport){
-      const fit=()=>document.body.classList.toggle('jmm-mobile-keyboard',
-        window.innerWidth<=760&&window.visualViewport.height<window.innerHeight-145);
-      window.visualViewport.addEventListener('resize',fit,{passive:true});fit();
-    }
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
-  window.JMMMobileDualDeviceR562449={selectView};
-})();
 </script>
 </body>
 </html>
